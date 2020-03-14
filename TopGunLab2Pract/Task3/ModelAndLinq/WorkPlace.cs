@@ -10,7 +10,7 @@ namespace TopGunLab2Pract.ModelAndLinq
         public int Id { get; set; }
         public CompanyName Name { get; set; }
         public City city { get; set; }
-        public int NumberOfWorkers { get; set; }
+        public string About { get; set; }
        
     }
 

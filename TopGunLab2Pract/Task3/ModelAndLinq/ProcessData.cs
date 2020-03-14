@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace TopGunLab2Pract.ModelAndLinq
 {
-   public class ProcessData 
+    public class ProcessData
     {
         List<Worker> workerList = new List<Worker>()
         {
@@ -23,12 +23,12 @@ namespace TopGunLab2Pract.ModelAndLinq
 
         List<WorkPlace> workPlaceList = new List<WorkPlace>()
         {
-            new WorkPlace() {Id = 1, city= City.Dnepr, Name= CompanyName.Epam, NumberOfWorkers=100 },
-        new WorkPlace() { Id = 2, city = City.Dnepr, Name = CompanyName.TeamDev, NumberOfWorkers = 100 },
-        new WorkPlace() { Id = 3, city = City.Kharkiv, Name = CompanyName.TeamDev, NumberOfWorkers = 140 },
-         new WorkPlace() { Id = 4, city = City.Kyiv, Name = CompanyName.Nix, NumberOfWorkers = 200 },
-         new WorkPlace() { Id = 5, city = City.Lviv, Name = CompanyName.Nix, NumberOfWorkers = 100 },
-         new WorkPlace() { Id = 6, city = City.Odessa, Name = CompanyName.Epam, NumberOfWorkers = 300 }
+            new WorkPlace() {Id = 1, city= City.Dnepr, Name= CompanyName.Epam, About="Good company" },
+        new WorkPlace() { Id = 2, city = City.Dnepr, Name = CompanyName.TeamDev, About="Team International" },
+        new WorkPlace() { Id = 3, city = City.Kharkiv, Name = CompanyName.TeamDev, About="Very good company" },
+         new WorkPlace() { Id = 4, city = City.Kyiv, Name = CompanyName.Nix, About="Good company" },
+         new WorkPlace() { Id = 5, city = City.Lviv, Name = CompanyName.Nix, About="Good company" },
+         new WorkPlace() { Id = 6, city = City.Odessa, Name = CompanyName.Epam, About="Nice department" }
     };
         public IEnumerable<Worker> GetAll()
         {
@@ -39,14 +39,14 @@ namespace TopGunLab2Pract.ModelAndLinq
         public List<Worker> GetOlderThanFifty()
         {
             var workers = workerList.Select(x => x).Where(x => x.Age >= 50).ToList();
-                return workers;
+            return workers;
         }
-      
+
         public void GetWorkersGroupByCompany()
         {
 
             var workersByCompany = from worker in workerList
-                          group worker by worker.CompanyName;
+                                   group worker by worker.CompanyName;
 
             foreach (var company in workersByCompany)
             {
@@ -58,7 +58,37 @@ namespace TopGunLab2Pract.ModelAndLinq
         }
 
 
-      
+        public void GetWorkersolderFiftyGroupByCompany()
+        {
+
+            var workersByCompany = from worker in workerList
+                                   where worker.Age>50
+                                   group worker by worker.CompanyName;
+
+            foreach (var company in workersByCompany)
+            {
+                Console.WriteLine("Workers older than 50 from {0}: ", company.Key);
+                foreach (var worker in company)
+                    Console.WriteLine(worker.Name);
+                Console.WriteLine();
+            }
+        }
+
+        public void GetWorkersWithMaxSalaryGroupByCompany()
+        {
+
+            var workersByCompany = workerList.GroupBy(i => i.CompanyName).SelectMany(a => a.Where(b => b.Salary == a.Max(c => c.Salary)));
+
+
+            foreach (var company in workersByCompany)
+            {
+                Console.WriteLine("Workers with max salary from: {0} is {1}", company.CompanyName, company.Name);   
+                    Console.WriteLine();
+            }
+        }
+
+
+
 
     }
 }

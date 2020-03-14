@@ -19,7 +19,8 @@ namespace TopGunLab2Pract
 
             ProcessData pr = new ProcessData();
             pr.GetWorkersGroupByCompany();
-
+            pr.GetWorkersolderFiftyGroupByCompany();
+            pr.GetWorkersWithMaxSalaryGroupByCompany();
             Fibonacci fib = new Fibonacci();
                  fib.Count(6);
 

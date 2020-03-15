@@ -9,7 +9,7 @@ namespace TopGunLab2Pract
     {
         public void Count(int n)
         {
-            List<int> fibonacci = new List<int>();
+           List<int> fibonacci = new List<int>();
             Enumerable.Range(0, n)
                 .ToList()
                 .ForEach(f => fibonacci.Add((f <= 1 ? 1 : fibonacci[f - 2] + fibonacci[f - 1])));

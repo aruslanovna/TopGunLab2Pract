@@ -4,9 +4,9 @@ using System.Text;
 using System.Linq;
 namespace TopGunLab2Pract.Task4
 {
-  public  class EvenOdd
+    public class EvenOdd
     {
-        
+
 
         public void GetEven(int[] allNum)
         {
@@ -14,9 +14,9 @@ namespace TopGunLab2Pract.Task4
                      .Where(item => item % 2 == 0)
                      .Select(item => item)
                      .ToArray();
-            string arrType="Even numbers: ";
+            string arrType = "Even numbers: ";
             PrintArr(evenArr, arrType);
-            
+
         }
         public void GetOdd(int[] allNum)
         {
@@ -24,7 +24,7 @@ namespace TopGunLab2Pract.Task4
                      .Where(item => item % 2 != 0)
                      .Select(item => item)
                      .ToArray();
-            string arrType ="Odd numbers: ";
+            string arrType = "Odd numbers: ";
             PrintArr(oddArr, arrType);
         }
 
@@ -33,7 +33,7 @@ namespace TopGunLab2Pract.Task4
             Console.WriteLine(arrType);
             foreach (var t in arr)
             {
-                Console.Write(t+", ");
+                Console.Write(t + ", ");
             }
             Console.WriteLine();
         }
